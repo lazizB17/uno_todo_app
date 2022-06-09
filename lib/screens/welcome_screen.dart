@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../themes/theme_of_app.dart';
+import '../services/theme_service.dart';
+import 'home_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const id = "/welcome_screen";
-
+  static const id = "welcome_screen";
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -13,6 +12,11 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
+  void _goHome() {
+    Navigator.pushReplacementNamed(context, HomeScreen.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,56 +29,37 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               flex: 3,
               child: Container(
                 margin: const EdgeInsets.only(top: 40, left: 30, right: 30),
-                width: 200,
-                height: 200,
-                child: Lottie.asset(
-                  "assets/lotties/lottie.json",
-                  repeat: true,
-                  reverse: false,
-                ),
+                child: Lottie.asset("assets/lotties/lottie.json",
+                    repeat: true, reverse: false),
               ),
             ),
             Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // #Welcome to Uno To Do
-                  Container(
-                    width: 200,
-                    height: 90,
-                    child: Text(
-                      "Welcome to\nUno To Do",
-                      style: Themes.textStyle1(),
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Welcome to\n\tUno To Do",
                       textAlign: TextAlign.center,
+                      style: ThemeService.textStyle1(),
                     ),
-                  ),
-                  // #Start using the best To Do app
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 50),
-                    width: 240,
-                    height: 20,
-                    child: const Text(
+                    Text(
                       "Start using the best To Do app",
-                      style: TextStyle(color: Color(0xFF5835E5), fontSize: 16),
-                      textAlign: TextAlign.center,
+                      style: ThemeService.textStyle2(),
                     ),
-                  ),
-                  // #Get started
-                  MaterialButton(
-                    minWidth: MediaQuery.of(context).size.width - 60,
-                    height: 50,
-                    onPressed: () {},
-                    shape: const StadiumBorder(),
-                    color: const Color(0xFF5835E5),
-                    child: const Text(
-                      "Get started",
-                      style: TextStyle(fontSize: 14, color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                    MaterialButton(
+                      minWidth: MediaQuery.of(context).size.width - 60,
+                      height: 50,
+                      onPressed: _goHome,
+                      shape: const StadiumBorder(),
+                      color: const Color(0xff5835E5),
+                      child: Text(
+                        "Get Started",
+                        style: ThemeService.textStyle3(),
+                      ),
+                    )
+                  ],
+                )),
           ],
         ),
       ),

@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uno_todo_app/screens/welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  static const id = "/home_screen";
-
+  static const id = "splash_screen";
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -39,11 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
-  _goto() async {
+  Future<void> _goto() async {
     await Future.delayed(const Duration(milliseconds: 500));
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) {
-      return const WelcomeScreen();
-    }));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
   }
 
   @override
